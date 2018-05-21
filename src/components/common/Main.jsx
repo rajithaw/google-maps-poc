@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import { observer, inject } from 'mobx-react'
 
 import Header from './Header';
 import FloatingPanel from './FloatingPanel';
@@ -19,48 +20,37 @@ const styles = theme => ({
     }
 });
 
+@inject('rootStore')
+@observer
 class Main extends Component {
-    state = {
-        leftDrawerOpen: false,
-        rightDrawerOpen: false
-    };
-
     render() {
-        const { classes } = this.props;
+        const { classes, rootStore } = this.props;
         
         return (
             <div className={classes.appFrame}>
                 <Header menuClickHandler={this.onHeaderMenuClick} />
                 <FloatingPanel searchResultClickHandler={this.onSearchResultClick} />
-                <LeftDrawer open={this.state.leftDrawerOpen} closeClickHandler={this.onLeftDrawerCloseClick} />
-                <Content open={this.state.rightDrawerOpen} />
-                <RightDrawer open={this.state.rightDrawerOpen} closeClickHandler={this.onRightDrawerCloseClick} />
+                <LeftDrawer open={rootStore.leftDrawerOpen} closeClickHandler={this.onLeftDrawerCloseClick} />
+                <Content open={rootStore.rightDrawerOpen} />
+                <RightDrawer open={rootStore.rightDrawerOpen} closeClickHandler={this.onRightDrawerCloseClick} />
             </div>
         );
     }
 
     onHeaderMenuClick = () => {
-        this.setState({
-            leftDrawerOpen: true
-        });
+        this.props.rootStore.setLeftDrawerOpen(true);
     };
 
     onSearchResultClick = () => {
-        this.setState({
-            rightDrawerOpen: true
-        });
+        this.props.rootStore.setRightDrawerOpen(true);
     };
 
     onLeftDrawerCloseClick = () => {
-        this.setState({
-            leftDrawerOpen: false
-        });
+        this.props.rootStore.setLeftDrawerOpen(false);
     };
 
     onRightDrawerCloseClick = () => {
-        this.setState({
-            rightDrawerOpen: false
-        });
+        this.props.rootStore.setRightDrawerOpen(false);
     };
 }
 
