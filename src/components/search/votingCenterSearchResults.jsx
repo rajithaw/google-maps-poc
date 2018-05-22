@@ -35,7 +35,7 @@ function VotingCenterSearchResults(props) {
 
 VotingCenterSearchResults.propTypes = {
     classes: PropTypes.object.isRequired,
-    searchResults: PropTypes.array,
+    searchResults: PropTypes.object,
     resultClickHandler: PropTypes.func,
 };
 

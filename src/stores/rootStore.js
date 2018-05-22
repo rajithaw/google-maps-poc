@@ -1,6 +1,6 @@
 import { observable, action } from 'mobx';
 
-class RootStore {
+export default class RootStore {
     @observable isBusy = false;
     @observable leftDrawerOpen = false;
     @observable rightDrawerOpen = false;
@@ -20,5 +20,3 @@ class RootStore {
         this.rightDrawerOpen = rightDrawerOpen;
     }
 }
-
-export default RootStore;

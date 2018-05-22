@@ -3,14 +3,14 @@ import { Provider } from 'mobx-react';
 import './App.css';
 
 import Main from './components/common/Main';
-import RootStore from './stores/rootStore';
+import SessionStore from './stores/sessionStore';
 
-const rootStore = new RootStore();
+const stores = new SessionStore();
 
 class App extends Component {
   render() {
     return (
-      <Provider rootStore={rootStore}>
+      <Provider {...stores}>
         <div className="App">
           <Main />
         </div>
