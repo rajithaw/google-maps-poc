@@ -4,6 +4,7 @@ export default class RootStore {
     @observable isBusy = false;
     @observable leftDrawerOpen = false;
     @observable rightDrawerOpen = false;
+    @observable landingDialogOpen = false;
 
     @action
     setBusy(busy){
@@ -18,5 +19,10 @@ export default class RootStore {
     @action
     setRightDrawerOpen(rightDrawerOpen){
         this.rightDrawerOpen = rightDrawerOpen;
+    }
+
+    @action
+    setLandingDialogOpen(landingDialogOpen){
+        this.landingDialogOpen = landingDialogOpen;
     }
 }
