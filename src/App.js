@@ -6,6 +6,25 @@ import './App.css';
 import Main from './components/common/Main';
 import SessionStore from './stores/sessionStore';
 
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      light: '#b93f52',
+      main: '#84002a',
+      dark: '#510000',
+      contrastText: '#fff',
+    },
+    secondary: {
+      light: '#ff9e40',
+      main: '#f36d01',
+      dark: '#b93d00',
+      contrastText: '#000',
+    },
+  },
+});
+
 const stores = new SessionStore();
 
 class App extends Component {
@@ -14,32 +33,18 @@ class App extends Component {
             return <Main {...props} />
         }
 
-        // const renderMergedProps = (component, ...rest) => {
-        //     const finalProps = Object.assign({}, ...rest);
-        //     return (
-        //         React.createElement(component, finalProps)
-        //     );
-        // }
-        
-        // const PropsRoute = ({ component, ...rest }) => {
-        //     return (
-        //         <Route {...rest} render={routeProps => {
-        //             return renderMergedProps(component, routeProps, rest);
-        //         }}/>
-        //     );
-        // }
-
         return (
             <Provider {...stores}>
-                <div className="App">
-                    <BrowserRouter>
-                        <Switch>
-                            <Route exact path='/' component={appMain} />
-                            <Route exact path="/start" component={appMain} />
-                            {/* <PropsRoute exact path='/start' component={appMain} start={true} /> */}
-                        </Switch>
-                    </BrowserRouter>
-                </div>
+                <MuiThemeProvider theme={theme}>
+                    <div className="App">
+                        <BrowserRouter>
+                            <Switch>
+                                <Route exact path='/' component={appMain} />
+                                <Route exact path="/start" component={appMain} />
+                            </Switch>
+                        </BrowserRouter>
+                    </div>
+                </MuiThemeProvider>
             </Provider>
         );
     }
