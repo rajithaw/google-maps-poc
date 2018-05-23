@@ -24,7 +24,7 @@ const styles = theme => ({
 @observer
 class Main extends Component {
     render() {
-        const { classes, rootStore } = this.props;
+        const { classes, rootStore, location } = this.props;
         
         return (
             <div className={classes.appFrame}>

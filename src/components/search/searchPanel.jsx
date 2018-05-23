@@ -19,8 +19,13 @@ const styles = theme => ({
 @inject('searchStore')
 @observer
 class SearchPanel extends React.Component {
+    constructor(props){
+        super(props);
+
+        this.handleTabChange = this.handleTabChange.bind(this);
+        this.onVotingCenterSearchResultClick = this.onVotingCenterSearchResultClick.bind(this);
+    }
     render() {
-        debugger;
         const { classes, searchStore } = this.props;
 
         return (
@@ -28,7 +33,7 @@ class SearchPanel extends React.Component {
                 <AppBar position="static" color="default">
                     <Tabs
                         value={searchStore.selectedTabIndex}
-                        onChange={this.handleTabChange.bind(this)}
+                        onChange={this.handleTabChange}
                         indicatorColor="primary"
                         textColor="primary"
                         fullWidth
@@ -43,7 +48,7 @@ class SearchPanel extends React.Component {
                         <AdderssSearchBox addressChangeHandler={this.onVotingCenterSearchAddressChange} />
                         <VotingCenterSearchResults 
                             searchResults={searchStore.votingCenterSearchResults}
-                            resultClickHandler={this.onVotingCenterSearchResultClick.bind(this)} />
+                            resultClickHandler={this.onVotingCenterSearchResultClick} />
                     </div>}
                     {searchStore.selectedTabIndex === 1 && <div>
                         Browse electorates
@@ -55,7 +60,6 @@ class SearchPanel extends React.Component {
     }
 
     handleTabChange = (event, value) => {
-        debugger;
         this.props.searchStore.setSelectedTabIndex(value);
     };
 
