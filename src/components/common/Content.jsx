@@ -10,38 +10,38 @@ const drawerWidth = 240;
 const styles = theme => ({
     content: {
         flexGrow: 1,
-        marginTop: theme.mixins.toolbar.minHeight,
-        backgroundColor: theme.palette.background.default,
+        marginRight: -drawerWidth,
+        marginTop: '64px',
         transition: theme.transitions.create('margin', {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
         }),
-    },
-    'content-right': {
-        marginRight: -drawerWidth,
+        [theme.breakpoints.down('sm')]: {
+            marginRight: '-100%',
+        },
+        [theme.breakpoints.down('xs')]: {
+            marginTop: '56px',
+        }
     },
     contentShift: {
+        marginRight: 0,
         transition: theme.transitions.create('margin', {
             easing: theme.transitions.easing.easeOut,
             duration: theme.transitions.duration.enteringScreen,
-        }),
-    },
-    'contentShift-right': {
-        marginRight: 0,
-    },
+        })
+    }
 });
 
 function Content(props) {
     const { classes, open } = props;
 
     return (
-        <main className={classNames(classes.content, classes['content-right'], {
-            [classes.contentShift]: open,
-            [classes['contentShift-right']]: open
+        <div className={classNames(classes.content, {
+            [classes.contentShift]: open
           })}
         >
             <MainMap isMarkerShown />
-        </main>
+        </div>
     );
 }
 

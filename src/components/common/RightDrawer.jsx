@@ -8,11 +8,17 @@ const drawerWidth = 240;
 
 const styles = theme => ({
     rightDrawer: {
-        marginTop: theme.mixins.toolbar.minHeight,
+        width: drawerWidth,
+        [theme.breakpoints.down('sm')]: {
+            width: '100%',
+        }
     },
     drawerPaper: {
         position: 'relative',
-        width: drawerWidth,
+        marginTop: '64px',
+        [theme.breakpoints.down('xs')]: {
+            marginTop: '56px',
+        }
     }
 });
 

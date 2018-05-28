@@ -9,8 +9,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 const styles = {
     appBar: {
         position: 'absolute',
-        zIndex: 1201,
-        width: '100%'
+        zIndex: 1201
     },
     menuButton: {
         marginLeft: -12,

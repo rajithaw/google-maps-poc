@@ -8,6 +8,7 @@ import LeftDrawer from './LeftDrawer';
 import RightDrawer from './RightDrawer';
 import Content from './Content';
 import LandingDialog from '../landingDialog';
+import { Hidden } from '@material-ui/core';
 
 const styles = theme => ({
     appFrame: {
@@ -16,8 +17,11 @@ const styles = theme => ({
         display: 'flex',
         zIndex: 1,
         width: '100%',
-        height: 'auto',
-        marginBottom: -theme.mixins.toolbar.minHeight
+        height: '100%',
+        marginBottom: '-64px',
+        [theme.breakpoints.down('xs')]: {
+            marginBottom: '-56px',
+        }
     }
 });
 
@@ -32,12 +36,12 @@ class Main extends Component {
     render() {
         const { classes, rootStore } = this.props;
         
-        
-
         return (
             <div className={classes.appFrame}>
                 <Header menuClickHandler={this.onHeaderMenuClick} />
-                <FloatingPanel searchResultClickHandler={this.onSearchResultClick} />
+                <Hidden smDown>
+                    <FloatingPanel searchResultClickHandler={this.onSearchResultClick} />
+                </Hidden>
                 <LeftDrawer open={rootStore.leftDrawerOpen} closeClickHandler={this.onLeftDrawerCloseClick} />
                 <Content open={rootStore.rightDrawerOpen} />
                 <RightDrawer open={rootStore.rightDrawerOpen} closeClickHandler={this.onRightDrawerCloseClick} />
