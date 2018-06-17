@@ -3,27 +3,9 @@ import { Provider } from 'mobx-react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import './App.css';
 
+import AppTheme from './AppTheme';
 import Main from './components/common/Main';
 import SessionStore from './stores/sessionStore';
-
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      light: '#b93f52',
-      main: '#84002a',
-      dark: '#510000',
-      contrastText: '#fff',
-    },
-    secondary: {
-      light: '#ff9e40',
-      main: '#f36d01',
-      dark: '#b93d00',
-      contrastText: '#000',
-    },
-  },
-});
 
 const stores = new SessionStore();
 
@@ -35,7 +17,7 @@ class App extends Component {
 
         return (
             <Provider {...stores}>
-                <MuiThemeProvider theme={theme}>
+                <AppTheme>
                     <div className="App">
                         <BrowserRouter>
                             <Switch>
@@ -44,7 +26,7 @@ class App extends Component {
                             </Switch>
                         </BrowserRouter>
                     </div>
-                </MuiThemeProvider>
+                </AppTheme>
             </Provider>
         );
     }
